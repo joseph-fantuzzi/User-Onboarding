@@ -26,6 +26,7 @@ function App() {
   const [disabled, setDisabled] = useState(true);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [users, setUsers] = useState([]);
+  const [appearance, setAppearance] = useState(false);
 
   const validate = (name, value) => {
     yup
@@ -44,6 +45,7 @@ function App() {
       termsOfService: formValues.termsOfService,
     };
 
+    setAppearance(true);
     setFormValues(initialForm);
 
     axios
@@ -62,11 +64,16 @@ function App() {
 
   return (
     <div className="container">
-      <h1>User Onboarding</h1>
+      <h1 className="title">User Onboarding</h1>
       <Form formValues={formValues} setFormValues={setFormValues} disabled={disabled} validate={validate} formErrors={formErrors} submit={submit} />
-      {users.map((user) => {
-        return <User key={user.id} user={user} />;
-      })}
+      {appearance && (
+        <div className="user-container">
+          <h1 className="user-title">Users:</h1>
+          {users.map((user) => {
+            return <User key={user.id} user={user} />;
+          })}
+        </div>
+      )}
     </div>
   );
 }

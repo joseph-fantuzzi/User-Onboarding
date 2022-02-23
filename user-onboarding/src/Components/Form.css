@@ -1,3 +1,74 @@
+.form-container {
+  background: hsla(211, 66%, 87%, 1);
+  background: linear-gradient(90deg, hsla(211, 66%, 87%, 1) 0%, hsla(348, 67%, 88%, 1) 50%, hsla(272, 26%, 72%, 1) 100%);
+  background: -moz-linear-gradient(90deg, hsla(211, 66%, 87%, 1) 0%, hsla(348, 67%, 88%, 1) 50%, hsla(272, 26%, 72%, 1) 100%);
+  background: -webkit-linear-gradient(90deg, hsla(211, 66%, 87%, 1) 0%, hsla(348, 67%, 88%, 1) 50%, hsla(272, 26%, 72%, 1) 100%);
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#C9DEF4", endColorstr="#F5CCD4", GradientType=1 );
+  width: 70%;
+  padding: 50px 30px;
+  border-radius: 25px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1100px;
+}
+
 .errors {
   color: red;
+}
+
+label {
+  font-size: 1.25rem;
+  padding-bottom: 15px;
+}
+
+label:nth-of-type(2),
+label:nth-of-type(3),
+label:nth-of-type(4),
+label:nth-of-type(5) {
+  padding-top: 15px;
+}
+
+#fname,
+#lname,
+#email,
+#password,
+button {
+  font-family: "Poppins", sans-serif;
+  border: none;
+}
+
+#fname,
+#lname,
+#email,
+#password {
+  width: 60%;
+  max-width: 500px;
+  border-radius: 15px;
+  padding: 5px 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+#terms {
+  width: 30px;
+  height: 30px;
+}
+
+button {
+  border-radius: 30px;
+  padding: 10px 20px;
+  margin-top: 35px;
+  color: white;
+  background-color: #e13a7d;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+button:hover {
+  background-color: white;
+  color: #e13a7d;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
