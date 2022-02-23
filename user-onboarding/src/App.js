@@ -25,6 +25,7 @@ function App() {
   const [formValues, setFormValues] = useState(initialForm);
   const [disabled, setDisabled] = useState(true);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
+  const [users, setUsers] = useState([]);
 
   const validate = (name, value) => {
     yup
@@ -32,6 +33,25 @@ function App() {
       .validate(value)
       .then(() => setFormErrors({ ...formErrors, [name]: "" }))
       .catch((err) => setFormErrors({ ...formErrors, [name]: err.errors[0] }));
+  };
+
+  const submit = () => {
+    const newUser = {
+      fname: formValues.fname.trim(),
+      lname: formValues.lname.trim(),
+      email: formValues.email.trim(),
+      password: formValues.password.trim(),
+      termsOfService: formValues.termsOfService,
+    };
+
+    setFormValues(initialForm);
+
+    axios
+      .post("https://reqres.in/api/users", newUser)
+      .then((res) => {
+        setUsers([...users, res.data]);
+      })
+      .catch((err) => console.error(err));
   };
 
   useEffect(() => {
@@ -43,7 +63,10 @@ function App() {
   return (
     <div className="container">
       <h1>User Onboarding</h1>
-      <Form formValues={formValues} setFormValues={setFormValues} disabled={disabled} validate={validate} formErrors={formErrors} />
+      <Form formValues={formValues} setFormValues={setFormValues} disabled={disabled} validate={validate} formErrors={formErrors} submit={submit} />
+      {users.map((user) => {
+        return <User key={user.id} user={user} />;
+      })}
     </div>
   );
 }
