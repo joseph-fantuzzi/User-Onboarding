@@ -32,7 +32,9 @@ function Form(props) {
       <div className="errors">{formErrors.password}</div>
       <label htmlFor="terms">Agree To Terms Of Service:</label>
       <input id="terms" type="checkbox" name="termsOfService" value={formValues.termsOfService} onChange={onChange} />
-      <button disabled={disabled}>Create User</button>
+      <button id="create-user" disabled={disabled}>
+        Create User
+      </button>
     </form>
   );
 }
