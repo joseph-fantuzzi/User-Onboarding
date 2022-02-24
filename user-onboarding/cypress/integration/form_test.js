@@ -9,6 +9,10 @@ describe("User Onboarding App", () => {
    const passwordInput = () => cy.get('input[name=password]');
    const checkboxInput = () => cy.get('input[name=termsOfService]');
    const createUserBtn = () => cy.get('button[id="create-user"]');
+   const firstNameErrorMsg = () => cy.get('div[id="fname-error"]');
+   const lastNameErrorMsg = () => cy.get('div[id="lname-error"]');
+   const emailErrorMsg = () => cy.get('div[id="email-error"]');
+   const passwordErrorMsg = () => cy.get('div[id="password-error"]');
 
    it("sanity check", () => {
       expect(1 + 1).to.equal(2);
@@ -75,6 +79,38 @@ describe("User Onboarding App", () => {
          emailInput().should("have.value", "");
          passwordInput().should("have.value", "");
          checkboxInput().should("have.value", "false");
+         createUserBtn().should("be.disabled");
+      })
+
+      it("checks that once a the user button is clicked, a new user displays on the webpage", () => {
+         cy.contains("Meeka Smith").should("not.exist");
+         firstNameInput().type("Meeka");
+         lastNameInput().type("Smith");
+         emailInput().type("hello@gmail.com");
+         passwordInput().type("qwerty");
+         checkboxInput().check();
+         createUserBtn().click();
+         cy.contains("Meeka Smith").should("exist");
+      })
+   })
+
+   describe("Checking form validation when an input is empty or not satisfied upon the conditions.", () => {
+      it("fails to create a user due to form validation", () => {
+         firstNameErrorMsg().should("not.be.visible");
+         lastNameErrorMsg().should("not.be.visible");
+         emailErrorMsg().should("not.be.visible");
+         passwordErrorMsg().should("not.be.visible");
+         firstNameInput().type("Brinley");
+         lastNameInput().type("Doggy");
+         firstNameInput().clear();
+         lastNameInput().clear();
+         emailInput().type("doggo");
+         passwordInput().type("22222");
+         checkboxInput().check();
+         firstNameErrorMsg().should("be.visible");
+         lastNameErrorMsg().should("be.visible");
+         emailErrorMsg().should("be.visible");
+         passwordErrorMsg().should("be.visible");
          createUserBtn().should("be.disabled");
       })
    })

@@ -20,16 +20,24 @@ function Form(props) {
     <form className="form-container" onSubmit={onSubmit}>
       <label htmlFor="fname">First Name:</label>
       <input id="fname" type="text" name="fname" value={formValues.fname} onChange={onChange} />
-      <div className="errors">{formErrors.fname}</div>
+      <div id="fname-error" className="errors">
+        {formErrors.fname}
+      </div>
       <label htmlFor="lname">Last Name:</label>
       <input id="lname" type="text" name="lname" value={formValues.lname} onChange={onChange} />
-      <div className="errors">{formErrors.lname}</div>
+      <div id="lname-error" className="errors">
+        {formErrors.lname}
+      </div>
       <label htmlFor="email">Email:</label>
       <input id="email" type="email" name="email" value={formValues.email} onChange={onChange} />
-      <div className="errors">{formErrors.email}</div>
+      <div id="email-error" className="errors">
+        {formErrors.email}
+      </div>
       <label htmlFor="password">Password:</label>
       <input id="password" type="password" name="password" value={formValues.password} onChange={onChange} />
-      <div className="errors">{formErrors.password}</div>
+      <div id="password-error" className="errors">
+        {formErrors.password}
+      </div>
       <label htmlFor="terms">Agree To Terms Of Service:</label>
       <input id="terms" type="checkbox" name="termsOfService" value={formValues.termsOfService} onChange={onChange} />
       <button id="create-user" disabled={disabled}>
